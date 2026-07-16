@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GvO PREMIUM | Multitienda</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.1);
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
+            --shadow-md: 0 12px 20px -3px rgba(15, 23, 42, 0.05);
+            --shadow-lg: 0 25px 30px -5px rgba(0,0,0,0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            border: none;
+            font-size: 1.1rem;
+            color: var(--primary);
+            cursor: pointer;
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background: #e2e8f0;
+            transform: scale(1.05);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffffff;
+        }
+
+        /* --- PRINCIPAL SEARCH BAR --- */
+        .main-search-section {
+            max-width: 1200px;
+            margin: 1rem auto 0 auto;
+            padding: 0 1rem;
+        }
+
+        .search-container-box {
+            background: #f1f5f9;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            padding: 0.9rem 1.2rem;
+            gap: 0.75rem;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .search-container-box:focus-within {
+            border-color: var(--accent);
+            background: #ffffff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-container-box i {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .search-container-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 1.8rem;
+            color: #ffffff;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 0.8rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            max-width: 600px;
+        }
+
+        /* --- SECCIONES DE ENTRADA --- */
+        .world-switcher {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .world-tab {
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+            justify-content: center;
+            border: 1px solid var(--border);
+        }
+
+        .world-tab h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #ffffff;
+            z-index: 2;
+        }
+
+        .world-tab p {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+            z-index: 2;
+        }
+
+        .world-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            box-shadow: var(--shadow-sm);
+            z-index: 2;
+        }
+
+        /* FONDO DE GvO ENERGÍA & TRANSPORTE */
+        #tab-energia {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+            border-color: #2e3c54;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+        }
+        
+        #tab-energia .world-icon {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fbbf24;
+        }
+
+        /* FONDO DE GvO GADGETS & TECNOLOGÍA */
+        #tab-tecnologia {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+            border-color: #2e3c54;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        #tab-tecnologia .world-icon {
+            background: rgba(255, 255, 255, 0.12);
+            color: #2563eb;
+        }
+
+        .world-tab:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- SECCIÓN CATEGORÍAS --- */
+        .categories-main-section {
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .categories-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .categories-card h2 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .vertical-category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .vertical-cat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-sm);
+            background: #f8fafc;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .vertical-cat-item span.cat-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .vertical-cat-item span.cat-counter {
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: #e2e8f0;
+            color: var(--text-main);
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .vertical-cat-item.active {
+            background: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .vertical-cat-item.active span.cat-name {
+            color: var(--accent);
+        }
+
+        .vertical-cat-item.active span.cat-counter {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .vertical-cat-item:hover:not(.active) {
+            background: #f1f5f9;
+        }
+
+        /* --- VENTANA DESLIZANTE DE SECCIÓN --- */
+        .section-page {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-main);
+            z-index: 150;
+            overflow-y: auto;
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-page.open {
+            left: 0;
+        }
+
+        .section-header {
+            background: #ffffff;
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 160;
+        }
+
+        .back-btn {
+            background: #f1f5f9;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 0.5rem 0.9rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .section-title-wrapper {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .section-title-wrapper h2 {
+            font-size: 1.05rem;
+            font-weight: 800;
+        }
+
+        .section-body {
+            flex-grow: 1;
+            padding: 1.2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- CHIPS DE CATEGORÍAS HORIZONTALES --- */
+        .horizontal-categories {
+            display: flex;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding-bottom: 0.8rem;
+            margin-bottom: 1rem;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+        }
+
+        .horizontal-categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-chip {
+            padding: 0.5rem 0.8rem;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .cat-chip.active {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+
+        .cat-chip .chip-count {
+            font-size: 0.65rem;
+            background: #f1f5f9;
+            padding: 0.1rem 0.35rem;
+            border-radius: 10px;
+            color: var(--text-main);
+        }
+
+        .cat-chip.active .chip-count {
+            background: rgba(255, 255, 255, 0.25);
+            color: #ffffff;
+        }
+
+        /* --- MICRO-TARJETAS DE PRODUCTOS --- */
+        .product-grid-micro {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+            gap: 0.6rem;
+        }
+
+        @media (max-width: 500px) {
+            .product-grid-micro {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+        }
+
+        .micro-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .micro-card:hover:not(.out-of-stock) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+            border-color: #cbd5e1;
+        }
+
+        /* NUEVO: ESTILOS PARA PRODUCTOS AGOTADOS (OPACOS) */
+        .micro-card.out-of-stock {
+            opacity: 0.45;
+            filter: grayscale(30%);
+            border-style: dashed;
+        }
+
+        .out-of-stock-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #64748b;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .micro-img-wrapper {
+            width: 100%;
+            padding-top: 95%;
+            position: relative;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .micro-img-wrapper img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        .micro-info {
+            padding: 0.6rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .micro-name {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.25;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 0.25rem;
+            height: 2rem;
+        }
+
+        .micro-desc {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 1.8rem;
+        }
+
+        .micro-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.25rem;
+            padding-top: 0.4rem;
+            border-top: 1px solid #f8fafc;
+        }
+
+        .micro-price {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .micro-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .micro-btn:hover:not(:disabled) {
+            background: var(--accent);
+        }
+
+        .micro-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .micro-btn.options-btn {
+            background: var(--accent);
+            width: auto;
+            padding: 0 0.5rem;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        /* --- MODALES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+
+        .modal-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            max-width: 440px;
+            width: 100%;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: #f1f5f9; border: none; font-size: 1.1rem;
+            width: 28px; height: 28px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+
+        .tire-option-box {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.7rem;
+            margin-top: 0.6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* --- CARRITO SIDEBAR --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0; right: -100%; width: 100%; max-width: 400px; height: 100%;
+            background: var(--bg-card); box-shadow: var(--shadow-lg); z-index: 250;
+            display: flex; flex-direction: column; transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cart-sidebar.open { right: 0; }
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(4px);
+            z-index: 200; display: none;
+        }
+        .cart-overlay.open { display: block; }
+        .cart-header { padding: 1.2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .cart-items-container { flex-grow: 1; padding: 1.2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .cart-item { display: flex; gap: 0.8rem; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9; }
+        .cart-item-img { width: 50px; height: 50px; border-radius: var(--radius-md); object-fit: cover; }
+        .cart-footer { padding: 1.2rem; border-top: 1px solid var(--border); }
+        .checkout-btn {
+            width: 100%; background: var(--success); color: #ffffff; border: none; padding: 1rem;
+            border-radius: var(--radius-md); font-size: 0.95rem; font-weight: 700; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; gap: 0.5rem;
+        }
+
+        /* --- FOOTER --- */
+        footer { 
+            background: #0f172a; color: #94a3b8; padding: 3rem 1rem 1.5rem 1rem; margin-top: 3rem; 
+        }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+        .footer-bottom { text-align: center; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid #1e293b; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <div class="header-top">
+            <div class="logo">GvO <span>PREMIUM</span></div>
+            <div class="nav-actions">
+                <button class="nav-btn"><i class="fa-regular fa-heart"></i></button>
+                <button class="nav-btn" onclick="toggleCart()">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-bottom: 3rem;">
+        
+        <!-- BUSCADOR PRINCIPAL -->
+        <section class="main-search-section">
+            <div class="search-container-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="mainSearchInput" placeholder="¿Qué estás buscando hoy?" onkeydown="handleMainSearch(event)">
+            </div>
+        </section>
+
+        <!-- HERO BANNER -->
+        <section class="hero">
+            <div class="hero-banner">
+                <span class="hero-tag">Catálogo Oficial</span>
+                <h1>Soluciones de Confianza</h1>
+                <p>Tu portal de compras preferido en La Habana. Selecciona un sector para explorar todas nuestras opciones disponibles de forma agrupada.</p>
+            </div>
+        </section>
+
+        <!-- SECCIONES DE ENTRADA -->
+        <section class="world-switcher">
+            <div class="world-tab" id="tab-energia" onclick="openSectionPage('energia')">
+                <div class="world-icon">
+                    <i class="fa-solid fa-car-battery"></i>
+                </div>
+                <div>
+                    <h3>Energía & Transporte</h3>
+                    <p>Baterías pesadas, gomas de moto y repuestos premium.</p>
+                </div>
+            </div>
+            <div class="world-tab" id="tab-tecnologia" onclick="openSectionPage('tecnologia')">
+                <div class="world-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div>
+                    <h3>Gadgets & Tecnología</h3>
+                    <p>Cargadores rápidos, periféricos y luces RGB.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CATEGORÍAS -->
+        <section class="categories-main-section">
+            <div class="categories-card">
+                <h2>Categorías Principales</h2>
+                <div class="vertical-category-list" id="mainCategoryList">
+                    <!-- Sincronizado dinámicamente -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- VENTANA INTERNA DESLIZANTE -->
+    <div class="section-page" id="sectionPage">
+        <div class="section-header">
+            <button class="back-btn" onclick="closeSectionPage()">
+                <i class="fa-solid fa-arrow-left"></i> Atrás
+            </button>
+            <div class="section-title-wrapper">
+                <h2 id="pageSectionTitle">Cargando...</h2>
+            </div>
+            <button class="nav-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-badge" id="pageCartBadge">0</span>
+            </button>
+        </div>
+
+        <div class="section-body">
+            <!-- Buscador interno -->
+            <div class="search-container-box" style="margin-bottom: 1.2rem; background: #ffffff; border: 1px solid var(--border);">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="pageSearchInput" placeholder="Buscar en esta categoría..." oninput="handlePageSearch()">
+            </div>
+
+            <!-- Chips horizontales -->
+            <div class="horizontal-categories" id="categoryChipsContainer"></div>
+
+            <!-- Grilla micro de productos -->
+            <div class="product-grid-micro" id="microProductGrid"></div>
+        </div>
+    </div>
+
+    <!-- MODAL DE MEDIDAS DE GOMAS -->
+    <div class="modal-overlay" id="tireModal" onclick="closeTireModal(event)">
+        <div class="modal-card">
+            <button class="close-modal" onclick="document.getElementById('tireModal').classList.remove('open')">&times;</button>
+            <h2 style="margin-bottom: 0.3rem; font-weight: 800; font-size: 1.15rem;"><i class="fa-solid fa-motorcycle" style="color: #ca8a04;"></i> Medidas de Gomas</h2>
+            <p style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 1rem;">Disponibles para entrega inmediata en La Habana.</p>
+            <div id="tireOptionsList"></div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR DEL CARRITO -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2 style="font-size: 1.1rem; font-weight: 800;">Pedido de WhatsApp</h2>
+            <button style="background:none; border:none; font-size:1.4rem; cursor:pointer;" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items-container" id="cartItemsContainer"></div>
+        <div class="cart-footer">
+            <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1rem; margin-bottom:0.8rem;">
+                <span>Total Estimado (CUP):</span>
+                <span id="cartTotalCUP">0 CUP</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.8rem; margin-bottom:1rem; color: var(--text-muted);">
+                <span>Equivalente USD:</span>
+                <span id="cartTotalUSD">$0.00 USD</span>
+            </div>
+            <button class="checkout-btn" onclick="sendWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Enviar a WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3 style="color:#fff; margin-bottom:0.8rem; font-weight: 800; font-size: 1.1rem;">GvO Premium</h3>
+                <p style="font-size: 0.85rem; line-height: 1.5;">La mejor selección de accesorios y soluciones de energía en La Habana. Calidad certificada y entrega coordinada al momento.</p>
+            </div>
+            <div>
+                <h3 style="color:#fff; margin-bottom:0.8rem; font-weight: 700; font-size: 1.1rem;">Contacto directo</h3>
+                <p style="font-size: 0.85rem;"><i class="fa-solid fa-location-dot" style="margin-right: 0.5rem;"></i> La Habana, Cuba</p>
+                <p style="margin-top:0.4rem; font-size: 0.85rem;"><i class="fa-solid fa-phone" style="margin-right: 0.5rem;"></i> +53 58870159</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 GvO Premium. Soluciones Rápidas.
+        </div>
+    </footer>
+
+    <script>
+        // BASE DE DATOS COMPLETA: DISPONIBLES Y NO DISPONIBLES (MARCADOS CON available: false)
+        const products = [
+            // ==================== MUNDO: ENERGÍA Y TRANSPORTE ====================
+            {
+                id: "bat-180",
+                name: "Batería T.Y.L 12V 180Ah | Certificación E.U.",
+                world: "energia",
+                category: "baterias",
+                price: 175.00,
+                currency: "USD",
+                img: "/static/baterias.jpg",
+                description: "Batería de alta gama con estrictos estándares internacionales e ISO. Diseñada para un rendimiento duradero y arranque pesado impecable.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "gomas-moto",
+                name: "Gomas de Moto Premium",
+                world: "energia",
+                category: "neumaticos",
+                price: 22.00,
+                currency: "USD",
+                img: "/static/neumaticos.jpg",
+                description: "Neumáticos con agarre superior bajo cualquier clima y resistencia al desgaste acelerado. Ideal para las calles exigentes.",
+                isTireSelector: true,
+                available: true
+            },
+            {
+                id: "cargador-coche-gvo",
+                name: "Cargador Coche Multi-Puerto Premium",
+                world: "energia",
+                category: "accesorios-coche",
+                price: 7.00,
+                currency: "USD",
+                img: "/static/cargador-coche.jpg",
+                description: "Estación de carga rápida para encendedor con múltiples puertos y pantalla LED de voltaje inteligente integrada.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "cargador-coche-alt",
+                name: "Cargador para Coche Rápido V1",
+                world: "energia",
+                category: "accesorios-coche",
+                price: 7.00,
+                currency: "USD",
+                img: "/static/Cargador para coche-1.jpg",
+                description: "Variante de carga veloz inteligente para vehículos. Protección avanzada contra cortocircuitos y sobrecalentamiento.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "cargador-car-classic",
+                name: "Cargador para Coche Dual Standard",
+                world: "energia",
+                category: "accesorios-coche",
+                price: 7.00,
+                currency: "USD",
+                img: "/static/Cargador para coche.jpg",
+                description: "Adaptador clásico de alta compatibilidad para mantener tus dispositivos móviles energizados durante tus viajes diarios.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "portacelular",
+                name: "Portacelular de Alta Seguridad",
+                world: "energia",
+                category: "accesorios-coche",
+                price: 6.00,
+                currency: "USD",
+                img: "/static/Portacelular.jpg",
+                description: "Fijación ultra firme con sistema anti-vibración bache tras bache. Operación simple con una sola mano en tu auto.",
+                isTireSelector: false,
+                available: true
+            },
+
+            // ==================== MUNDO: GADGETS Y TECNOLOGÍA ====================
+            {
+                id: "linterna-buytiti",
+                name: "Linterna Buytiti SD-559",
+                world: "tecnologia",
+                category: "accesorios",
+                price: 12.00,
+                currency: "USD",
+                img: "/static/Linterna Buytiti.jpg",
+                description: "Reflector de mano LED recargable de gran alcance. Perfecta para alumbrado doméstico en emergencias y talleres.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "moreka-40w",
+                name: "Cargador Moreka Dual 40W",
+                world: "tecnologia",
+                category: "cargadores",
+                price: 9.00,
+                currency: "USD",
+                img: "/static/Cargador Moreka 40W .jpg",
+                description: "Bloque de carga de doble puerto USB inteligente. Distribución eficiente de potencia para conectar dos terminales a la vez.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "cables-1hora",
+                name: "Cables 1HORA Blindados",
+                world: "tecnologia",
+                category: "accesorios",
+                price: 2.28,
+                currency: "USD",
+                img: "/static/Cables 1HORA.jpg",
+                description: "Cables de datos y carga reforzados con filamentos anti-tirones. Mayor durabilidad mecánica ante dobleces diarios.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "bocina-1hora",
+                name: "Bocina Portátil 1Hora BOC242",
+                world: "tecnologia",
+                category: "audio",
+                price: 32.85,
+                currency: "USD",
+                img: "/static/Bocina inalámbrica.jpg",
+                description: "Bocina inalámbrica con conectividad Bluetooth de largo alcance, sonido estéreo claro y luces dinámicas RGB.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "mouse-1hora",
+                name: "Mouse Inalámbrico 1HORA",
+                world: "tecnologia",
+                category: "perifericos",
+                price: 12.85,
+                currency: "USD",
+                img: "/static/Mouse 1HORA.jpg",
+                description: "Mouse óptico ergonómico inalámbrico de alta respuesta. Ideal para un flujo cómodo en computadoras y laptops de oficina.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "mouse-buytiti",
+                name: "Mouse Gamer Buytiti RGB",
+                world: "tecnologia",
+                category: "perifericos",
+                price: 12.28,
+                currency: "USD",
+                img: "/static/Mouse Buytiti.jpg",
+                description: "Periférico con diseño ergonómico para gaming, botones de acceso rápido y retroiluminación fluida multicolor.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "tiras-led",
+                name: "Tiras LED RGB Decorativas",
+                world: "tecnologia",
+                category: "iluminacion",
+                price: 8.00,
+                currency: "USD",
+                img: "/static/Tiras LED RGB.png",
+                description: "Cinta flexible de iluminación multicolor con control remoto. Cambia el ambiente de tus habitaciones o vitrinas al instante.",
+                isTireSelector: false,
+                available: true
+            },
+            
+            // ==================== ARTÍCULOS AGOTADOS (OPACOS VÍA INTERFAZ) ====================
+            {
+                id: "cargador-samsung-45w",
+                name: "Cargador Carga Rápida Samsung 45W",
+                world: "tecnologia",
+                category: "cargadores",
+                price: 15.00,
+                currency: "USD",
+                img: "/static/Cargador Samsung 45W.jpg",
+                description: "Cargador de pared súper rápido ideal para dispositivos de alta gama. Máxima seguridad y eficiencia energética.",
+                isTireSelector: false,
+                available: false // Marcará opaco
+            },
+            {
+                id: "power-bank-10k",
+                name: "Power Bank Básico 10,000 mAh",
+                world: "tecnologia",
+                category: "cargadores",
+                price: 14.00,
+                currency: "USD",
+                img: "/static/Power bank 1.jpg",
+                description: "Batería externa portátil compacta. Perfecta para cargas de emergencia cotidianas en tu teléfono celular.",
+                isTireSelector: false,
+                available: false // Marcará opaco
+            },
+            {
+                id: "power-bank-20k",
+                name: "Power Bank Premium 20,000 mAh",
+                world: "tecnologia",
+                category: "cargadores",
+                price: 25.00,
+                currency: "USD",
+                img: "/static/Power bank.jpg",
+                description: "Gran capacidad de almacenamiento con puertos duales de carga rápida para múltiples dispositivos simultáneamente.",
+                isTireSelector: false,
+                available: false // Marcará opaco
+            }
+        ];
+
+        // TASA DE CAMBIO ACTUALIZADA
+        const USD_TO_CUP = 660; 
+
+        const tireSizes = [
+            { size: "2.50 - 16", desc: "Motos ligeras." },
+            { size: "2.75 - 16", desc: "Excelente agarre." },
+            { size: "2.75 - 17", desc: "Medida estándar." },
+            { size: "2.50 - 18", desc: "Conducción suave." },
+            { size: "2.75 - 18", desc: "Alta durabilidad." }
+        ];
+
+        const categoriesMap = {
+            all: "Todos",
+            baterias: "Baterías",
+            neumaticos: "Gomas",
+            "accesorios-coche": "Soportes & Auto",
+            cargadores: "Cargadores",
+            audio: "Audio & Sonido",
+            perifericos: "Periféricos",
+            iluminacion: "Luces",
+            accesorios: "Accesorios"
+        };
+
+        let currentWorld = 'energia'; 
+        let currentCategory = 'all';
+        let cart = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            buildTireModalOptions();
+            renderMainVerticalCategories();
+        });
+
+        // --- ENLAZAR CATEGORÍAS EN LA HOME ---
+        function renderMainVerticalCategories() {
+            const container = document.getElementById('mainCategoryList');
+            container.innerHTML = '';
+
+            const catsToShow = [
+                { id: 'all', name: 'Todos los productos', world: 'all' },
+                { id: 'baterias', name: 'Baterías de Auto/Moto', world: 'energia' },
+                { id: 'neumaticos', name: 'Gomas de Moto', world: 'energia' },
+                { id: 'cargadores', name: 'Cargadores Rápidos', world: 'tecnologia' }
+            ];
+
+            catsToShow.forEach(cat => {
+                let count = 0;
+                if (cat.id === 'all') {
+                    count = products.length;
+                } else {
+                    count = products.filter(p => p.category === cat.id).length;
+                }
+
+                const item = document.createElement('div');
+                item.className = `vertical-cat-item ${cat.id === 'all' ? 'active' : ''}`;
+                item.onclick = (e) => selectVerticalCategory(cat.id, cat.world, e);
+                item.innerHTML = `
+                    <span class="cat-name">${cat.name}</span>
+                    <span class="cat-counter">${count}</span>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function selectVerticalCategory(categoryId, world, event) {
+            document.querySelectorAll('.vertical-cat-item').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            if (categoryId === 'all') {
+                openSectionPage('energia');
+            } else {
+                currentCategory = categoryId;
+                openSectionPage(world);
+            }
+        }
+
+        // --- BUSCADOR PRINCIPAL ---
+        function handleMainSearch(event) {
+            if (event.key === 'Enter') {
+                const query = event.target.value.trim();
+                if (query) {
+                    const firstMatch = products.find(p => p.name.toLowerCase().includes(query.toLowerCase()));
+                    const worldToOpen = firstMatch ? firstMatch.world : 'energia';
+                    
+                    openSectionPage(worldToOpen);
+                    document.getElementById('pageSearchInput').value = query;
+                    filterAndRenderMicroProducts();
+                }
+            }
+        }
+
+        // --- CONTROL DE VENTANAS INDEPENDIENTES ---
+        function openSectionPage(world) {
+            currentWorld = world;
+            
+            const titleElement = document.getElementById('pageSectionTitle');
+            if (world === 'energia') {
+                titleElement.innerHTML = `<i class="fa-solid fa-car-battery" style="color:#fbbf24; margin-right:0.4rem;"></i> Energía & Transporte`;
+            } else {
+                titleElement.innerHTML = `<i class="fa-solid fa-laptop-code" style="color:#2563eb; margin-right:0.4rem;"></i> Gadgets & Tecnología`;
+            }
+
+            renderCategoryChips();
+            filterAndRenderMicroProducts();
+
+            document.getElementById('sectionPage').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSectionPage() {
+            document.getElementById('sectionPage').classList.remove('open');
+            document.body.style.overflow = 'auto';
+            currentCategory = 'all';
+            renderMainVerticalCategories(); 
+        }
+
+        // --- RENDER DE CHIPS HORIZONTALES ---
+        function renderCategoryChips() {
+            const container = document.getElementById('categoryChipsContainer');
+            container.innerHTML = '';
+
+            const worldProducts = products.filter(p => p.world === currentWorld);
+            const activeCats = new Set(worldProducts.map(p => p.category));
+
+            const allChip = document.createElement('div');
+            allChip.className = `cat-chip ${currentCategory === 'all' ? 'active' : ''}`;
+            allChip.onclick = () => { currentCategory = 'all'; selectCategoryChip(); };
+            allChip.innerHTML = `Todos <span class="chip-count">${worldProducts.length}</span>`;
+            container.appendChild(allChip);
+
+            activeCats.forEach(cat => {
+                const count = worldProducts.filter(p => p.category === cat).length;
+                const chip = document.createElement('div');
+                chip.className = `cat-chip ${currentCategory === cat ? 'active' : ''}`;
+                chip.onclick = () => { currentCategory = cat; selectCategoryChip(); };
+                chip.innerHTML = `${categoriesMap[cat] || cat} <span class="chip-count">${count}</span>`;
+                container.appendChild(chip);
+            });
+        }
+
+        function selectCategoryChip() {
+            renderCategoryChips();
+            filterAndRenderMicroProducts();
+        }
+
+        // --- RENDERIZADO DINÁMICO CON EFECTO DE AGOTADO/OPACO ---
+        function filterAndRenderMicroProducts() {
+            const query = document.getElementById('pageSearchInput').value.toLowerCase();
+            const filtered = products.filter(p => {
+                const matchWorld = p.world === currentWorld;
+                const matchCat = currentCategory === 'all' || p.category === currentCategory;
+                const matchQuery = p.name.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+                return matchWorld && matchCat && matchQuery;
+            });
+
+            const grid = document.getElementById('microProductGrid');
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 3rem; color: var(--text-muted); font-size: 0.8rem;">No se encontraron productos en este sector.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                
+                // Si el producto no está disponible se añade la clase CSS 'out-of-stock'
+                card.className = `micro-card ${!p.available ? 'out-of-stock' : ''}`;
+
+                let badgeHTML = !p.available ? `<span class="out-of-stock-badge">Agotado</span>` : '';
+                
+                let actionButton = '';
+                if (!p.available) {
+                    actionButton = `<button class="micro-btn" disabled><i class="fa-solid fa-ban"></i></button>`;
+                } else if (p.isTireSelector) {
+                    actionButton = `<button class="micro-btn options-btn" onclick="openTireModal()"><i class="fa-solid fa-expand"></i> Ver</button>`;
+                } else {
+                    actionButton = `<button class="micro-btn" onclick="addToCart('${p.id}')"><i class="fa-solid fa-plus"></i></button>`;
+                }
+
+                // Deshabilitar clicks en la imagen si no está disponible
+                let imgAction = '';
+                if (p.available) {
+                    imgAction = p.isTireSelector ? `onclick="openTireModal()"` : `onclick="addToCart('${p.id}')"`;
+                }
+                
+                let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `$${p.price.toLocaleString()} CUP`;
+
+                card.innerHTML = `
+                    ${badgeHTML}
+                    <div class="micro-img-wrapper" ${imgAction} style="${p.available ? 'cursor: pointer;' : 'cursor: not-allowed;'}">
+                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400&auto=format&fit=crop'">
+                    </div>
+                    <div class="micro-info">
+                        <h3 class="micro-name">${p.name}</h3>
+                        <p class="micro-desc">${p.description}</p>
+                        <div class="micro-footer">
+                            <span class="micro-price">${displayPrice}</span>
+                            ${actionButton}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function handlePageSearch() {
+            filterAndRenderMicroProducts();
+        }
+
+        // --- CARRITO DE COMPRA ---
+        function addToCart(id) {
+            const p = products.find(prod => prod.id == id);
+            // Doble validación por seguridad
+            if (!p || !p.available) return;
+
+            const existing = cart.find(item => item.id == id);
+            if(existing) { 
+                existing.qty++; 
+            } else { 
+                cart.push({ id: p.id, name: p.name, price: p.price, currency: p.currency, img: p.img, qty: 1 }); 
+            }
+            updateCartUI();
+            openCart();
+        }
+
+        function openTireModal() { document.getElementById('tireModal').classList.add('open'); }
+        function closeTireModal(e) { if(e.target.id === 'tireModal') document.getElementById('tireModal').classList.remove('open'); }
+
+        function buildTireModalOptions() {
+            const list = document.getElementById('tireOptionsList');
+            list.innerHTML = '';
+            tireSizes.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'tire-option-box';
+                div.innerHTML = `
+                    <div>
+                        <strong style="font-size:0.85rem; color:var(--primary);">${item.size}</strong>
+                        <p style="font-size:0.7rem; color:var(--text-muted);">${item.desc}</p>
+                    </div>
+                    <button class="micro-btn" onclick="addTireSizeToCart('${item.size}')" style="width:auto; padding:0.5rem 0.8rem;">Elegir</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function addTireSizeToCart(size) {
+            const baseTire = products.find(p => p.isTireSelector);
+            if (!baseTire || !baseTire.available) return;
+
+            const uniqueId = `goma-${size.replace(/\s+/g, '')}`;
+            const existing = cart.find(item => item.id === uniqueId);
+            if(existing) { 
+                existing.qty++; 
+            } else { 
+                cart.push({ id: uniqueId, name: `Goma Moto (${size})`, price: baseTire.price, currency: baseTire.currency, img: baseTire.img, qty: 1 }); 
+            }
+            document.getElementById('tireModal').classList.remove('open');
+            updateCartUI();
+            openCart();
+        }
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('open');
+            document.getElementById('cartOverlay').classList.add('open');
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('open');
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if(item) {
+                item.qty += delta;
+                if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItemsContainer');
+            const mainBadge = document.getElementById('cartBadge');
+            const pageBadge = document.getElementById('pageCartBadge');
+            
+            container.innerHTML = '';
+            let totalCUP = 0;
+            let totalUSD = 0;
+            let itemsCount = 0;
+
+            cart.forEach(item => {
+                const itemCost = item.price * item.qty;
+                if(item.currency === 'USD') {
+                    totalUSD += itemCost;
+                    totalCUP += itemCost * USD_TO_CUP;
+                } else {
+                    totalCUP += itemCost;
+                    totalUSD += itemCost / USD_TO_CUP;
+                }
+                itemsCount += item.qty;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                let priceLabel = item.currency === 'USD' ? `$${item.price.toFixed(2)} USD` : `${item.price.toLocaleString()} CUP`;
+                
+                div.innerHTML = `
+                    <img src="${item.img}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400&auto=format&fit=crop'">
+                    <div style="flex-grow:1;">
+                        <h4 style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:0.15rem;">${item.name}</h4>
+                        <span style="font-size:0.8rem; font-weight:700; color:var(--accent);">${priceLabel}</span>
+                        <div style="display:flex; gap:0.4rem; align-items:center; margin-top:0.4rem;">
+                            <button style="width:22px; height:22px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; font-weight:700; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.75rem;" onclick="changeQty('${item.id}', -1)">-</button>
+                            <span style="font-size:0.8rem; font-weight:700; min-width: 18px; text-align: center;">${item.qty}</span>
+                            <button style="width:22px; height:22px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; font-weight:700; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:0.75rem;" onclick="changeQty('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            mainBadge.innerText = itemsCount;
+            pageBadge.innerText = itemsCount;
+            document.getElementById('cartTotalCUP').innerText = `${totalCUP.toLocaleString()} CUP`;
+            document.getElementById('cartTotalUSD').innerText = `$${totalUSD.toFixed(2)} USD`;
+        }
+
+        function sendWhatsApp() {
+            if(cart.length === 0) return;
+            let text = "Hola GvO Premium, deseo realizar el siguiente pedido:\n\n";
+            let totalCUP = 0;
+            let totalUSD = 0;
+
+            cart.forEach(i => { 
+                let itemCost = i.price * i.qty;
+                let priceLabel = i.currency === 'USD' ? `$${itemCost.toFixed(2)} USD` : `${itemCost.toLocaleString()} CUP`;
+                text += `• ${i.qty}x ${i.name} (${priceLabel})\n`; 
+
+                if(i.currency === 'USD') {
+                    totalUSD += itemCost;
+                    totalCUP += itemCost * USD_TO_CUP;
+                } else {
+                    totalCUP += itemCost;
+                    totalUSD += itemCost / USD_TO_CUP;
+                }
+            });
+
+            text += `\n*Total Estimado: ${totalCUP.toLocaleString()} CUP (~$${totalUSD.toFixed(2)} USD)*\n\nPor favor, coordinar los detalles de entrega para La Habana.`;
+            window.open(`https://wa.me/5358870159?text=${encodeURIComponent(text)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
