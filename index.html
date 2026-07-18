@@ -212,33 +212,19 @@
             max-width: 600px;
         }
 
-        /* --- SECCIONES DE ENTRADA (MODIFICADO PARA IGUALAR LA IMAGEN) --- */
+        /* --- SECCIONES DE ENTRADA --- */
         .world-switcher {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columnas en móviles */
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
             max-width: 1200px;
             margin: 0 auto 1.5rem auto;
             padding: 0 1rem;
         }
 
-        /* El tercer tab ocupará el ancho completo en pantallas móviles */
-        .world-tab:nth-child(3) {
-            grid-column: span 2;
-        }
-
-        @media (min-width: 768px) {
-            .world-switcher {
-                grid-template-columns: repeat(3, 1fr); /* 3 columnas en desktop */
-            }
-            .world-tab:nth-child(3) {
-                grid-column: span 1; /* Reseteo en desktop */
-            }
-        }
-
         .world-tab {
             border-radius: var(--radius-md);
-            padding: 1.2rem 0.8rem;
+            padding: 1.5rem 1.2rem;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
@@ -248,35 +234,33 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 160px;
+            min-height: 180px;
             justify-content: center;
             border: 1px solid var(--border);
         }
 
         .world-tab h3 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 800;
             color: #ffffff;
             z-index: 2;
-            line-height: 1.2;
         }
 
         .world-tab p {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #cbd5e1;
             line-height: 1.4;
             z-index: 2;
-            margin-top: -0.2rem;
         }
 
         .world-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             box-shadow: var(--shadow-sm);
             z-index: 2;
         }
@@ -318,10 +302,16 @@
             color: #22c55e;
         }
 
-        .world-tab:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-        }
+       /* NEW: PERFUMERIA */
+        #tab-perfumes { background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+         url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600&auto=format&fit=crop') center/cover no-repeat; }
+         border-color: #2e3c54;
+            box-shadow: 0 10px 20px
+            
+        #tab-perfumeria .world-icon { background: rgba(255, 255, 255, 0.12);
+         color: #db2777; }
+        
+        .world-tab:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
         /* --- SECCIÓN CATEGORÍAS --- */
         .categories-main-section {
@@ -583,6 +573,7 @@
             object-fit: cover;
         }
 
+        /* DISEÑO DE REEMPLAZO PREMIUM EN CASO DE ERROR DE IMAGEN */
         .img-fallback-box {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -838,6 +829,17 @@
                 <div>
                     <h3>Alimentos & Despensa</h3>
                     <p>Productos básicos, proteínas, conservas y bebidas.</p>
+                </div>
+            </div>
+        
+        <!-- NUEVO MUNDO: PERFUMERÍA -->
+            <div class="world-tab" id="tab-perfumes" onclick="openSectionPage('perfumes')">
+                <div class="world-icon">
+                    <i class="fa-solid fa-spray-can-sparkles"></i>
+                </div>
+                <div>
+                    <h3>Perfumería</h3>
+                    <p>Fragancias originales, esencias y sets.</p>
                 </div>
             </div>
         </section>
@@ -1171,6 +1173,7 @@
             { size: "2.75 - 18", desc: "Alta durabilidad." }
         ];
 
+        // Añadidas las categorías de alimentos
         const categoriesMap = {
             all: "Todos",
             baterias: "Baterías",
@@ -1196,6 +1199,7 @@
             renderMainVerticalCategories();
         });
 
+        // MANEJADOR DINÁMICO DE ERROR DE IMAGEN
         function handleImageError(imageElement) {
             const wrapper = imageElement.parentElement;
             if (wrapper) {
@@ -1228,6 +1232,7 @@
                 { id: 'baterias', name: 'Baterías de Auto/Moto', world: 'energia' },
                 { id: 'neumaticos', name: 'Gomas de Moto', world: 'energia' },
                 { id: 'cargadores', name: 'Cargadores Rápidos', world: 'tecnologia' },
+                // Añadido para dar visibilidad desde el inicio a la nueva sección
                 { id: 'basicos', name: 'Alimentos y Despensa', world: 'alimentos' } 
             ];
 
@@ -1236,6 +1241,7 @@
                 if (cat.id === 'all') {
                     count = products.length;
                 } else if (cat.id === 'basicos' && cat.world === 'alimentos') {
+                    // Contamos todos los de la sección alimentos para este acceso directo
                     count = products.filter(p => p.world === 'alimentos').length;
                 } else {
                     count = products.filter(p => p.category === cat.id).length;
@@ -1259,6 +1265,7 @@
             if (categoryId === 'all') {
                 openSectionPage('energia');
             } else if (world === 'alimentos') {
+                // Si entra por el atajo general de alimentos, reseteamos su categoría interna
                 currentCategory = 'all';
                 openSectionPage(world);
             } else {
