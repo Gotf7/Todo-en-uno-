@@ -289,7 +289,6 @@
             color: #2563eb;
         }
 
-        /* --- NUEVO TAB DE ALIMENTOS --- */
         #tab-alimentos {
             background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
                         url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
@@ -302,18 +301,17 @@
             color: #22c55e;
         }
 
-       /* NEW: PERFUMERIA */
-       #tab-perfumes { 
-    background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
-                url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600&auto=format&fit=crop') center/cover no-repeat; 
-    border-color: #2e3c54;
-    box-shadow: 0 10px 20px rgba(219, 39, 119, 0.15);
-}
+        #tab-perfumes {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600&auto=format&fit=crop') center/cover no-repeat;
+            border-color: #2e3c54;
+            box-shadow: 0 10px 20px rgba(219, 39, 119, 0.15);
+        }
 
-#tab-perfumeria .world-icon { 
-    background: rgba(255, 255, 255, 0.12);
-    color: #db2777; 
-}
+        #tab-perfumes .world-icon {
+            background: rgba(255, 255, 255, 0.12);
+            color: #db2777;
+        }
         
         .world-tab:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 
@@ -825,7 +823,7 @@
                 </div>
             </div>
 
-            <!-- NUEVO MUNDO: ALIMENTOS -->
+            <!-- MUNDO: ALIMENTOS -->
             <div class="world-tab" id="tab-alimentos" onclick="openSectionPage('alimentos')">
                 <div class="world-icon">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -835,15 +833,15 @@
                     <p>Productos básicos, proteínas, conservas y bebidas.</p>
                 </div>
             </div>
-        
-        <!-- NUEVO MUNDO: PERFUMERÍA -->
+
+            <!-- MUNDO: PERFUMERÍA -->
             <div class="world-tab" id="tab-perfumes" onclick="openSectionPage('perfumes')">
                 <div class="world-icon">
-                    <i class="fa-solid fa-spray-can-sparkles"></i>
+                    <i class="fa-solid fa-prescription-bottle"></i>
                 </div>
                 <div>
                     <h3>Perfumería</h3>
-                    <p>Fragancias originales, esencias y sets.</p>
+                    <p>Fragancias originales, esencias premium y sets.</p>
                 </div>
             </div>
         </section>
@@ -1116,16 +1114,16 @@
                 available: false
             },
             
-            // --- NUEVOS: ALIMENTOS Y DESPENSA ---
+            // --- ALIMENTOS & DESPENSA ---
             {
                 id: "azucar-blanca",
-                name: "Azúcar Blanca",
+                name: "Azúcar Blanca Saco 25kg",
                 world: "alimentos",
-                category: "básicos",
+                category: "basicos",
                 price: 35.00,
                 currency: "USD",
                 img: "static/Azúcar Blanca.jpg",
-                description: "Azúcar Blanca Refinada Saco 25kg.",
+                description: "Azúcar refino de alta pureza. Formato ideal para ahorro familiar o negocios de repostería.",
                 isTireSelector: false,
                 available: true
             },
@@ -1137,7 +1135,7 @@
                 price: 26.00,
                 currency: "USD",
                 img: "static/Arroz Guyanez.jpg",
-                description: "Arroz blanco premium de grano largo, importado directamente de Guyana. Textura suave, cocción uniforme y excelente calidad para todas tus comidas diarias.",
+                description: "Arroz blanco premium de grano largo. Textura suave, cocción uniforme y excelente rendimiento.",
                 isTireSelector: false,
                 available: true
             },
@@ -1149,7 +1147,7 @@
                 price: 2.00,
                 currency: "USD",
                 img: "static/atun.jpg",
-                description: "Lata de atún en aceite. Alto valor nutricional, rápido de preparar y excelente para cualquier comida.",
+                description: "Lata de atún en aceite vegetal. Alto valor nutricional y listo para consumir en ensaladas o pastas.",
                 isTireSelector: false,
                 available: true
             },
@@ -1161,13 +1159,87 @@
                 price: 45.00,
                 currency: "USD",
                 img: "static/protein.jpg",
-                description: "Proteína de suero de leche de alta pureza. Fundamental para la recuperación muscular y aumento de volumen.",
+                description: "Proteína de suero de leche de alta pureza. Fundamental para la recuperación muscular y nutrición deportiva.",
+                isTireSelector: false,
+                available: true
+            },
+
+            // --- PERFUMERÍA ---
+            {
+                id: "perfume-sauvage",
+                name: "Christian Dior Sauvage EDT 100ml",
+                world: "perfumes",
+                category: "fragancias-hombre",
+                price: 110.00,
+                currency: "USD",
+                img: "static/perfume_hombre.jpg",
+                description: "Fragancia masculina icónica, fresca y amaderada. Una composición radical para el hombre auténtico.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "perfume-bleu-chanel",
+                name: "Bleu de Chanel EDP 100ml",
+                world: "perfumes",
+                category: "fragancias-hombre",
+                price: 135.00,
+                currency: "USD",
+                img: "static/perfume_hombre.jpg",
+                description: "Elogio a la libertad masculina en un aroma aromático-amaderado con una estela cautivadora.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "perfume-lavie",
+                name: "Lancôme La Vie Est Belle EDP 75ml",
+                world: "perfumes",
+                category: "fragancias-mujer",
+                price: 105.00,
+                currency: "USD",
+                img: "static/perfume_mujer.jpg",
+                description: "Fragancia floral frutal, el aroma de la felicidad. Con notas de iris, jazmín y flor de azahar.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "perfume-good-girl",
+                name: "Carolina Herrera Good Girl EDP 80ml",
+                world: "perfumes",
+                category: "fragancias-mujer",
+                price: 120.00,
+                currency: "USD",
+                img: "static/perfume_mujer.jpg",
+                description: "Aroma atrevido y sofisticado en el icónico frasco de tacón. Notas de jazmín, cacao y haba tonka.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "set-versace",
+                name: "Set Versace Eros para Hombre",
+                world: "perfumes",
+                category: "sets",
+                price: 95.00,
+                currency: "USD",
+                img: "static/set_perfume.jpg",
+                description: "Incluye EDT 100ml, Gel de Ducha y After Shave Balm. El regalo perfecto.",
+                isTireSelector: false,
+                available: true
+            },
+            {
+                id: "set-carolina-herrera",
+                name: "Set 212 VIP Rose para Mujer",
+                world: "perfumes",
+                category: "sets",
+                price: 115.00,
+                currency: "USD",
+                img: "static/set_perfume.jpg",
+                description: "Incluye EDP 80ml y Body Lotion. Fragancia glamorosa y festiva.",
                 isTireSelector: false,
                 available: true
             }
         ];
 
-        const USD_TO_CUP = 660; 
+        const USD_TO_CUP = 330; // Tasa de cambio actualizada
 
         const tireSizes = [
             { size: "2.50 - 16", desc: "Motos ligeras." },
@@ -1177,7 +1249,6 @@
             { size: "2.75 - 18", desc: "Alta durabilidad." }
         ];
 
-        // Añadidas las categorías de alimentos
         const categoriesMap = {
             all: "Todos",
             baterias: "Baterías",
@@ -1191,7 +1262,10 @@
             basicos: "Básicos",
             conservas: "Conservas",
             bebidas: "Bebidas",
-            suplementos: "Suplementos"
+            suplementos: "Suplementos",
+            "fragancias-hombre": "Fragancias Hombre",
+            "fragancias-mujer": "Fragancias Mujer",
+            sets: "Sets & Regalos"
         };
 
         let currentWorld = 'energia'; 
@@ -1236,8 +1310,8 @@
                 { id: 'baterias', name: 'Baterías de Auto/Moto', world: 'energia' },
                 { id: 'neumaticos', name: 'Gomas de Moto', world: 'energia' },
                 { id: 'cargadores', name: 'Cargadores Rápidos', world: 'tecnologia' },
-                // Añadido para dar visibilidad desde el inicio a la nueva sección
-                { id: 'basicos', name: 'Alimentos y Despensa', world: 'alimentos' } 
+                { id: 'basicos', name: 'Alimentos y Despensa', world: 'alimentos' },
+                { id: 'fragancias-hombre', name: 'Perfumería Masculina', world: 'perfumes' }
             ];
 
             catsToShow.forEach(cat => {
@@ -1245,8 +1319,9 @@
                 if (cat.id === 'all') {
                     count = products.length;
                 } else if (cat.id === 'basicos' && cat.world === 'alimentos') {
-                    // Contamos todos los de la sección alimentos para este acceso directo
                     count = products.filter(p => p.world === 'alimentos').length;
+                } else if (cat.id === 'fragancias-hombre' && cat.world === 'perfumes') {
+                    count = products.filter(p => p.world === 'perfumes').length;
                 } else {
                     count = products.filter(p => p.category === cat.id).length;
                 }
@@ -1268,8 +1343,7 @@
 
             if (categoryId === 'all') {
                 openSectionPage('energia');
-            } else if (world === 'alimentos') {
-                // Si entra por el atajo general de alimentos, reseteamos su categoría interna
+            } else if (world === 'alimentos' || world === 'perfumes') {
                 currentCategory = 'all';
                 openSectionPage(world);
             } else {
@@ -1302,6 +1376,8 @@
                 titleElement.innerHTML = `<i class="fa-solid fa-laptop-code" style="color:#2563eb; margin-right:0.4rem;"></i> Gadgets & Tecnología`;
             } else if (world === 'alimentos') {
                 titleElement.innerHTML = `<i class="fa-solid fa-basket-shopping" style="color:#22c55e; margin-right:0.4rem;"></i> Alimentos & Despensa`;
+            } else if (world === 'perfumes') {
+                titleElement.innerHTML = `<i class="fa-solid fa-prescription-bottle" style="color:#db2777; margin-right:0.4rem;"></i> Perfumería Premium`;
             }
 
             renderCategoryChips();
@@ -1383,7 +1459,7 @@
                     imgAction = p.isTireSelector ? `onclick="openTireModal()"` : `onclick="addToCart('${p.id}')"`;
                 }
                 
-                let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `$${p.price.toLocaleString()} CUP`;
+                let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `${p.price.toLocaleString()} CUP`;
 
                 card.innerHTML = `
                     ${badgeHTML}
