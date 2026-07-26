@@ -561,6 +561,29 @@
             letter-spacing: 0.3px;
         }
 
+        /* ETIQUETAS PARA CALIDAD DE PERFUMES */
+        .type-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.6rem;
+            font-weight: 800;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            box-shadow: var(--shadow-sm);
+        }
+        .original-badge {
+            background: #2563eb;
+            color: #ffffff;
+        }
+        .replica-badge {
+            background: #d97706;
+            color: #ffffff;
+        }
+
         .micro-img-wrapper {
             width: 100%;
             padding-top: 95%;
@@ -959,7 +982,7 @@
                 </div>
                 <div>
                     <h3>Perfumería</h3>
-                    <p>Fragancias originales, esencias premium y sets.</p>
+                    <p>Fragancias originales, réplicas 1:1 de alta calidad y sets.</p>
                 </div>
             </div>
         </section>
@@ -1091,7 +1114,7 @@
                 price: 175.00,
                 currency: "USD",
                 img: "static/baterias.jpg",
-                description: "Batería de alta gama con strictly estándares internacionales e ISO. Diseñada para un rendimiento duradero y arranque pesado impecable.",
+                description: "Batería de alta gama con estrictos estándares internacionales e ISO. Diseñada para un rendimiento duradero y arranque pesado impecable.",
                 isTireSelector: false,
                 available: true
             },
@@ -1153,7 +1176,7 @@
                 price: 9.00,
                 currency: "USD",
                 img: "static/Cargador Iphone 1Hora.jpg",
-                description: "Cargador de IPhone 20W Marca 1Hora Carga Rápida.", 
+                description: "Cargador de iPhone 20W Marca 1Hora Carga Rápida.", 
                 isTireSelector: false, 
                 available: true
             },
@@ -1321,7 +1344,8 @@
                 id: "perfume-1-million",
                 name: "Paco Rabanne 1 Million 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume 1 Million.jpg",
@@ -1333,7 +1357,8 @@
                 id: "perfume-9pm",
                 name: "Afnan 9pm 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 70.00,
                 currency: "USD",
                 img: "static/Perfume 9pm.jpg",
@@ -1345,7 +1370,8 @@
                 id: "perfume-212-men",
                 name: "Carolina Herrera 212 Men NYC 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 70.00,
                 currency: "USD",
                 img: "static/Perfume 212 Men NYC.jpg",
@@ -1357,7 +1383,8 @@
                 id: "perfume-212-vip-men",
                 name: "Carolina Herrera 212 VIP Men 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 70.00,
                 currency: "USD",
                 img: "static/Perfume 212 VIP Men.jpg",
@@ -1369,7 +1396,8 @@
                 id: "perfume-amarige",
                 name: "Givenchy Amarige 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Amarige.jpg",
@@ -1381,7 +1409,8 @@
                 id: "perfume-bad-boy",
                 name: "Carolina Herrera Bad Boy 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Bad Boy.jpg",
@@ -1393,11 +1422,12 @@
                 id: "perfume-badee-al-oud",
                 name: "Lattafa Bade'e Al Oud 100ml",
                 world: "perfumes",
-                category: "fragancias-unisex",
+                category: "originales",
+                isReplica: false,
                 price: 60.00,
                 currency: "USD",
                 img: "static/Perfume Badee Al Oud.jpg",
-                description: "Una bestia negra. Potente Oud de la realeza, especias cálidas y un rastro inolvidable.",
+                description: "Potente Oud de la realeza, especias cálidas y un rastro inolvidable.",
                 isTireSelector: false,
                 available: true
             },
@@ -1405,7 +1435,8 @@
                 id: "perfume-black-opium",
                 name: "Yves Saint Laurent Black Opium 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Black Opium.jpg",
@@ -1417,11 +1448,12 @@
                 id: "perfume-bleu-chanel",
                 name: "Bleu de Chanel 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Blue De Chanel.jpg",
-                description: "Elogio a la libertad masculina en un aroma aromático-amaderado con una estela cautivadora.",
+                description: "Aroma aromático-amaderado con una estela cautivadora e intensa.",
                 isTireSelector: false,
                 available: true
             },
@@ -1429,23 +1461,25 @@
                 id: "perfume-cdni-man",
                 name: "Armaf Club De La Nuit Intense Man 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 65.00,
                 currency: "USD",
                 img: "static/Perfume Club De La Nuit Intense Man.jpg",
-                description: "El cítrico ahumado más buscado. Limón, piña y abedul con una proyección arrolladora.",
+                description: "El cítrico ahumado más buscado. Limón, piña y abedul con proyección arrolladora.",
                 isTireSelector: false,
                 available: true
             },
             {
                 id: "perfume-cdni-women",
-                name: "Armaf Club De La Nuit Women 100ml",
+                name: "Armaf Club De La Nuit Women 100ml (Réplica)",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "replicas",
+                isReplica: true,
                 price: 40.00,
                 currency: "USD",
                 img: "static/Perfume Club De La Nuit Women (replica) .jpg",
-                description: "Elegancia embotellada. Notas de rosa, pachulí y vainilla. Cautivadora y de larga duración.",
+                description: "Réplica 1:1 de alta fijación. Notas de rosa, pachulí y vainilla. Cautivadora y duradera.",
                 isTireSelector: false,
                 available: false
             },
@@ -1453,11 +1487,12 @@
                 id: "perfume-coco-chanel",
                 name: "Coco Chanel 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 90.00,
                 currency: "USD",
                 img: "static/Perfume Coco Chanel.jpg",
-                description: "Misteriosa y provocativa. Una mezcla ambarina exquisita para mujeres con mucha personalidad.",
+                description: "Misteriosa y provocativa. Una mezcla ambarina exquisita para mujeres con personalidad.",
                 isTireSelector: false,
                 available: true
             },
@@ -1465,11 +1500,12 @@
                 id: "perfume-fame",
                 name: "Paco Rabanne Fame 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Fame Paco Rabanne .jpg",
-                description: "Mango jugoso, jazmín brillante e incienso cremoso en un frasco vanguardista inconfundible.",
+                description: "Mango jugoso, jazmín brillante e incienso cremoso en un frasco vanguardista.",
                 isTireSelector: false,
                 available: true
             },
@@ -1477,11 +1513,12 @@
                 id: "perfume-good-girl",
                 name: "Carolina Herrera Good Girl 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume GooD Girl.jpg",
-                description: "Aroma atrevido y sofisticado en el icónico frasco de tacón. Notas de jazmín, cacao y haba tonka.",
+                description: "Aroma atrevido y sofisticado en el icónico frasco de tacón. Notas de jazmín y cacao.",
                 isTireSelector: false,
                 available: true
             },
@@ -1489,11 +1526,12 @@
                 id: "perfume-invictus",
                 name: "Paco Rabanne Invictus 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Invictus .jpg",
-                description: "La esencia del campeón. Frescura marina con pomelo y madera de guayaco magnética.",
+                description: "La esencia del campeón. Frescura marina con pomelo y madera de guayaco.",
                 isTireSelector: false,
                 available: true
             },
@@ -1501,11 +1539,12 @@
                 id: "perfume-invictus-parfum",
                 name: "Paco Rabanne Invictus Parfum 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 90.00,
                 currency: "USD",
                 img: "static/Perfume Invictus Parfum Rabanne.jpg",
-                description: "Versión más intensa y profunda. Maderas potentes y jabón aromático para la victoria.",
+                description: "Versión más intensa y profunda. Maderas potentes y jabón aromático.",
                 isTireSelector: false,
                 available: true
             },
@@ -1513,11 +1552,12 @@
                 id: "perfume-lavie",
                 name: "Lancôme La Vie Est Belle 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume La Vie Est Belle.jpg",
-                description: "Fragancia floral frutal, el aroma de la felicidad. Con notas de iris, jazmín y flor de azahar.",
+                description: "Fragancia floral frutal, el aroma de la felicidad con iris y jazmín.",
                 isTireSelector: false,
                 available: true
             },
@@ -1525,11 +1565,12 @@
                 id: "perfume-n5-chanel",
                 name: "Chanel N°5 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume N5 Chanel.jpg",
-                description: "El perfume más famoso del mundo. Un ramo floral aldehídico mítico, atemporal y puro.",
+                description: "El perfume más famoso del mundo. Un ramo floral aldehídico mítico y puro.",
                 isTireSelector: false,
                 available: true
             },
@@ -1537,11 +1578,12 @@
                 id: "perfume-olympea",
                 name: "Paco Rabanne Olympéa 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Olympéa.jpg",
-                description: "Una diosa moderna. Vainilla salada irresistible entrelazada con jazmín de agua y mandarina.",
+                description: "Una diosa moderna. Vainilla salada irresistible entrelazada con jazmín de agua.",
                 isTireSelector: false,
                 available: true
             },
@@ -1549,11 +1591,12 @@
                 id: "perfume-phantom",
                 name: "Paco Rabanne Phantom 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Phantom.jpg",
-                description: "Fragancia conectada y futurista. Lavanda energizante, limón fundido y vainilla amaderada.",
+                description: "Fragancia conectada y futurista. Lavanda energizante, limón y vainilla.",
                 isTireSelector: false,
                 available: true
             },
@@ -1561,11 +1604,12 @@
                 id: "perfume-phantom-intense",
                 name: "Paco Rabanne Phantom Intense 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Phantom Intense Rabanne.jpg",
-                description: "Un aura más atrevida con flor de naranjo adictiva, lavanda oscura y vainilla seductora.",
+                description: "Un aura más atrevida con flor de naranjo adictiva y lavanda oscura.",
                 isTireSelector: false,
                 available: true
             },
@@ -1573,11 +1617,12 @@
                 id: "perfume-santal",
                 name: "Le Labo Santal 33 100ml",
                 world: "perfumes",
-                category: "fragancias-unisex",
+                category: "originales",
+                isReplica: false,
                 price: 90.00,
                 currency: "USD",
                 img: "static/Perfume Santal.jpg",
-                description: "Icono de culto. Notas de sándalo ahumado, papiro y cuero para un perfil místico y único.",
+                description: "Icono de culto. Notas de sándalo ahumado, papiro y cuero.",
                 isTireSelector: false,
                 available: true
             },
@@ -1585,11 +1630,12 @@
                 id: "perfume-sauvage-edt",
                 name: "Christian Dior Sauvage EDT 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 90.00,
                 currency: "USD",
                 img: "static/Perfume Sauvage.jpg",
-                description: "Fragancia masculina icónica, fresca y amaderada. Una composición radical para el hombre auténtico.",
+                description: "Fragancia masculina icónica, fresca y amaderada. Composición radical.",
                 isTireSelector: false,
                 available: true
             },
@@ -1597,11 +1643,12 @@
                 id: "perfume-sauvage-edp",
                 name: "Christian Dior Sauvage EDP 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Sauvage Eau Parfum Dior.jpg",
-                description: "Aroma envolvente y misterioso. Las notas de bergamota se combinan con el absoluto de vainilla.",
+                description: "Aroma envolvente y misterioso. Bergamota combinada con absoluto de vainilla.",
                 isTireSelector: false,
                 available: true
             },
@@ -1609,11 +1656,12 @@
                 id: "perfume-sauvage-parfum",
                 name: "Christian Dior Sauvage Parfum 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 90.00,
                 currency: "USD",
                 img: "static/Perfume Sauvage Parfum Dior.jpg",
-                description: "Versión de máxima concentración. Un encanto denso, amaderado y con ricos toques orientales.",
+                description: "Versión de máxima concentración. Encanto denso, amaderado y oriental.",
                 isTireSelector: false,
                 available: true
             },
@@ -1621,11 +1669,12 @@
                 id: "perfume-scandal",
                 name: "Jean Paul Gaultier Scandal 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Scandal .jpg",
-                description: "Miel gourmand descarada. Elegancia con notas de naranja sanguina, gardenia y pachulí.",
+                description: "Miel gourmand descarada. Naranja sanguina, gardenia y pachulí.",
                 isTireSelector: false,
                 available: true
             },
@@ -1633,11 +1682,12 @@
                 id: "perfume-versace-bright-crystal",
                 name: "Versace Bright Crystal 100ml",
                 world: "perfumes",
-                category: "fragancias-mujer",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Versace Bright Crystal.jpg",
-                description: "Fresca, vibrante y luminosa. Granada, yuzu y flores primaverales puras.",
+                description: "Fresca, vibrante y luminosa. Granada, yuzu y flores primaverales.",
                 isTireSelector: false,
                 available: true
             },
@@ -1645,11 +1695,12 @@
                 id: "perfume-versace-eros-flame",
                 name: "Versace Eros Flame 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Versace Eros Flame.jpg",
-                description: "Fuego y pasión. Mandarina especiada, romero y maderas para contrastes fríos y cálidos.",
+                description: "Fuego y pasión. Mandarina especiada, romero y maderas cálidas.",
                 isTireSelector: false,
                 available: true
             },
@@ -1657,11 +1708,12 @@
                 id: "perfume-versace-eros-edt",
                 name: "Versace Eros EDT 100ml",
                 world: "perfumes",
-                category: "fragancias-hombre",
+                category: "originales",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/Perfume Vesace Eros Eau De Toilette.jpg",
-                description: "Amor, pasión, belleza. Menta intensa, manzana verde y haba tonka vibrante.",
+                description: "Menta intensa, manzana verde y haba tonka vibrante.",
                 isTireSelector: false,
                 available: true
             },
@@ -1670,10 +1722,11 @@
                 name: "Set Versace Eros para Hombre 100ml",
                 world: "perfumes",
                 category: "sets",
+                isReplica: false,
                 price: 80.00,
                 currency: "USD",
                 img: "static/set_perfume.jpg",
-                description: "Incluye EDT 100ml, Gel de Ducha y After Shave Balm. El regalo perfecto.",
+                description: "Incluye EDT 100ml, Gel de Ducha y After Shave Balm.",
                 isTireSelector: false,
                 available: true
             },
@@ -1682,6 +1735,7 @@
                 name: "Set 212 VIP Rose para Mujer 100ml",
                 world: "perfumes",
                 category: "sets",
+                isReplica: false,
                 price: 8.00,
                 currency: "USD",
                 img: "static/set_perfume.jpg",
@@ -1691,7 +1745,7 @@
             }
         ];
 
-        const USD_TO_CUP = 670;
+        const USD_TO_CUP = 675;
 
         const tireSizes = [
             { size: "2.50 - 16", desc: "Motos ligeras." },
@@ -1715,9 +1769,8 @@
             conservas: "Conservas",
             bebidas: "Bebidas",
             suplementos: "Suplementos",
-            "fragancias-hombre": "Fragancias Hombre",
-            "fragancias-mujer": "Fragancias Mujer",
-            "fragancias-unisex": "Fragancias Unisex",
+            originales: "Perfumes Originales",
+            replicas: "Réplicas 1:1",
             sets: "Sets & Regalos"
         };
 
@@ -1742,7 +1795,6 @@
             const detailModal = document.getElementById('productDetailModal');
             const tireModal = document.getElementById('tireModal');
             const cartSidebar = document.getElementById('cartSidebar');
-            const sectionPage = document.getElementById('sectionPage');
 
             // 1. Si la foto/modal de producto está abierta, cerrarla
             if (detailModal.classList.contains('open')) {
@@ -1806,17 +1858,14 @@
                 { id: 'neumaticos', name: 'Gomas de Moto', world: 'energia' },
                 { id: 'cargadores', name: 'Cargadores Rápidos', world: 'tecnologia' },
                 { id: 'basicos', name: 'Alimentos y Despensa', world: 'alimentos' },
-                { id: 'fragancias-hombre', name: 'Perfumería Masculina y Femenina', world: 'perfumes' }
+                { id: 'originales', name: 'Perfumes Originales', world: 'perfumes' },
+                { id: 'replicas', name: 'Perfumes Réplicas 1:1', world: 'perfumes' }
             ];
 
             catsToShow.forEach(cat => {
                 let count = 0;
                 if (cat.id === 'all') {
                     count = products.length;
-                } else if (cat.id === 'basicos' && cat.world === 'alimentos') {
-                    count = products.filter(p => p.world === 'alimentos').length;
-                } else if (cat.id === 'fragancias-hombre' && cat.world === 'perfumes') {
-                    count = products.filter(p => p.world === 'perfumes').length;
                 } else {
                     count = products.filter(p => p.category === cat.id).length;
                 }
@@ -1838,9 +1887,6 @@
 
             if (categoryId === 'all') {
                 openSectionPage('energia');
-            } else if (world === 'alimentos' || world === 'perfumes') {
-                currentCategory = 'all';
-                openSectionPage(world);
             } else {
                 currentCategory = categoryId;
                 openSectionPage(world);
@@ -1950,6 +1996,15 @@
 
                 let badgeHTML = !p.available ? `<span class="out-of-stock-badge">Agotado</span>` : '';
                 
+                // Etiqueta visual adicional para Perfumería
+                if (p.world === 'perfumes' && p.available) {
+                    if (p.isReplica) {
+                        badgeHTML += `<span class="type-badge replica-badge">Réplica 1:1</span>`;
+                    } else if (p.category === 'originales') {
+                        badgeHTML += `<span class="type-badge original-badge">Original</span>`;
+                    }
+                }
+
                 let actionButton = '';
                 if (!p.available) {
                     actionButton = `<button class="micro-btn" disabled><i class="fa-solid fa-ban"></i></button>`;
