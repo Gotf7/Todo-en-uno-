@@ -581,7 +581,6 @@
             transform: scale(1.05);
         }
 
-        /* INDICADOR DE ZOOM AL PASAR EL MOUSE POR LA IMAGEN */
         .zoom-hint-icon {
             position: absolute;
             bottom: 6px;
@@ -600,7 +599,6 @@
             z-index: 5;
         }
 
-        /* DISEÑO DE REEMPLAZO PREMIUM EN CASO DE ERROR DE IMAGEN */
         .img-fallback-box {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -893,7 +891,7 @@
     <!-- ENCABEZADO -->
     <header>
         <div class="header-top">
-            <div class="logo">GvO <span>PREMIUM</span></div>
+            <div class="logo" onclick="closeSectionPage()">GvO <span>PREMIUM</span></div>
             <div class="nav-actions">
                 <button class="nav-btn"><i class="fa-regular fa-heart"></i></button>
                 <button class="nav-btn" onclick="toggleCart()">
@@ -945,7 +943,6 @@
                 </div>
             </div>
 
-            <!-- MUNDO: ALIMENTOS -->
             <div class="world-tab" id="tab-alimentos" onclick="openSectionPage('alimentos')">
                 <div class="world-icon">
                     <i class="fa-solid fa-basket-shopping"></i>
@@ -956,7 +953,6 @@
                 </div>
             </div>
 
-            <!-- MUNDO: PERFUMERÍA -->
             <div class="world-tab" id="tab-perfumes" onclick="openSectionPage('perfumes')">
                 <div class="world-icon">
                     <i class="fa-solid fa-prescription-bottle"></i>
@@ -1035,7 +1031,7 @@
     <!-- MODAL DE MEDIDAS DE GOMAS -->
     <div class="modal-overlay" id="tireModal" onclick="closeTireModal(event)">
         <div class="modal-card">
-            <button class="close-modal" onclick="document.getElementById('tireModal').classList.remove('open')">&times;</button>
+            <button class="close-modal" onclick="closeTireModalDirect()">&times;</button>
             <h2 style="margin-bottom: 0.3rem; font-weight: 800; font-size: 1.15rem;"><i class="fa-solid fa-motorcycle" style="color: #ca8a04;"></i> Medidas de Gomas</h2>
             <p style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 1rem;">Disponibles para entrega inmediata en La Habana.</p>
             <div id="tireOptionsList"></div>
@@ -1095,7 +1091,7 @@
                 price: 175.00,
                 currency: "USD",
                 img: "static/baterias.jpg",
-                description: "Batería de alta gama con estrictos estándares internacionales e ISO. Diseñada para un rendimiento duradero y arranque pesado impecable.",
+                description: "Batería de alta gama con strictly estándares internacionales e ISO. Diseñada para un rendimiento duradero y arranque pesado impecable.",
                 isTireSelector: false,
                 available: true
             },
@@ -1695,7 +1691,7 @@
             }
         ];
 
-        const USD_TO_CUP = 670; // Tasa de cambio actualizada
+        const USD_TO_CUP = 670;
 
         const tireSizes = [
             { size: "2.50 - 16", desc: "Motos ligeras." },
@@ -1729,12 +1725,54 @@
         let currentCategory = 'all';
         let cart = [];
 
+        // AL CARGAR LA PÁGINA (COMPROBAR NAVEGACIÓN Y RECARGA DE PÁGINA)
         document.addEventListener('DOMContentLoaded', () => {
             buildTireModalOptions();
             renderMainVerticalCategories();
+
+            // Comprobar la URL hash al cargar la página
+            const initialHash = window.location.hash.replace('#', '');
+            if (initialHash && ['energia', 'tecnologia', 'alimentos', 'perfumes'].includes(initialHash)) {
+                openSectionPage(initialHash, false);
+            }
         });
 
-        // MANEJADOR DINÁMICO DE ERROR DE IMAGEN
+        // ESCUCHAR BOTÓN "ATRÁS" DEL NAVEGADOR O TELÉFONO
+        window.addEventListener('popstate', (e) => {
+            const detailModal = document.getElementById('productDetailModal');
+            const tireModal = document.getElementById('tireModal');
+            const cartSidebar = document.getElementById('cartSidebar');
+            const sectionPage = document.getElementById('sectionPage');
+
+            // 1. Si la foto/modal de producto está abierta, cerrarla
+            if (detailModal.classList.contains('open')) {
+                detailModal.classList.remove('open');
+                return;
+            }
+
+            // 2. Si el modal de gomas está abierto, cerrarlo
+            if (tireModal.classList.contains('open')) {
+                tireModal.classList.remove('open');
+                return;
+            }
+
+            // 3. Si el carrito está abierto, cerrarlo
+            if (cartSidebar.classList.contains('open')) {
+                cartSidebar.classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('open');
+                return;
+            }
+
+            // 4. Manejar navegación entre secciones y página principal
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['energia', 'tecnologia', 'alimentos', 'perfumes'].includes(hash)) {
+                openSectionPage(hash, false);
+            } else {
+                closeSectionPage(false);
+            }
+        });
+
+        // MANEJADORES DE IMÁGENES
         function handleImageError(imageElement) {
             const wrapper = imageElement.parentElement;
             if (wrapper) {
@@ -1823,7 +1861,8 @@
             }
         }
 
-        function openSectionPage(world) {
+        // ABRIR PÁGINA CON REGISTRO EN EL HISTORIAL
+        function openSectionPage(world, pushState = true) {
             currentWorld = world;
             
             const titleElement = document.getElementById('pageSectionTitle');
@@ -1842,13 +1881,22 @@
 
             document.getElementById('sectionPage').classList.add('open');
             document.body.style.overflow = 'hidden';
+
+            if (pushState && window.location.hash !== '#' + world) {
+                history.pushState({ world: world }, '', '#' + world);
+            }
         }
 
-        function closeSectionPage() {
+        // CERRAR PÁGINA
+        function closeSectionPage(pushState = true) {
             document.getElementById('sectionPage').classList.remove('open');
             document.body.style.overflow = 'auto';
             currentCategory = 'all';
             renderMainVerticalCategories(); 
+
+            if (pushState && window.location.hash !== '') {
+                history.pushState(null, '', window.location.pathname + window.location.search);
+            }
         }
 
         function renderCategoryChips() {
@@ -1911,9 +1959,7 @@
                     actionButton = `<button class="micro-btn" onclick="addToCart('${p.id}')"><i class="fa-solid fa-plus"></i></button>`;
                 }
 
-                // Al tocar la imagen siempre se abre el modal agrandado con detalles
                 let imgAction = `onclick="openProductDetailModal('${p.id}')"`;
-                
                 let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `${p.price.toLocaleString()} CUP`;
 
                 card.innerHTML = `
@@ -1939,7 +1985,7 @@
             filterAndRenderMicroProducts();
         }
 
-        /* --- MODAL DE DETALLES Y AMPLIFICACIÓN DE PRODUCTO --- */
+        /* --- DETALLE Y MODALES CON CONTROL DE HISTORIAL --- */
         function openProductDetailModal(id) {
             const p = products.find(prod => prod.id == id);
             if (!p) return;
@@ -1965,16 +2011,21 @@
             }
 
             document.getElementById('productDetailModal').classList.add('open');
+            history.pushState({ modal: 'productDetail' }, '');
         }
 
         function closeProductDetailModal(e) {
             if (e.target.id === 'productDetailModal') {
-                document.getElementById('productDetailModal').classList.remove('open');
+                closeProductDetailModalDirect();
             }
         }
 
         function closeProductDetailModalDirect() {
-            document.getElementById('productDetailModal').classList.remove('open');
+            const modal = document.getElementById('productDetailModal');
+            if (modal.classList.contains('open')) {
+                modal.classList.remove('open');
+                history.back();
+            }
         }
 
         function addToCart(id) {
@@ -1991,8 +2042,24 @@
             openCart();
         }
 
-        function openTireModal() { document.getElementById('tireModal').classList.add('open'); }
-        function closeTireModal(e) { if(e.target.id === 'tireModal') document.getElementById('tireModal').classList.remove('open'); }
+        function openTireModal() { 
+            document.getElementById('tireModal').classList.add('open'); 
+            history.pushState({ modal: 'tireModal' }, '');
+        }
+
+        function closeTireModal(e) { 
+            if(e.target.id === 'tireModal') {
+                closeTireModalDirect();
+            } 
+        }
+
+        function closeTireModalDirect() {
+            const modal = document.getElementById('tireModal');
+            if (modal.classList.contains('open')) {
+                modal.classList.remove('open');
+                history.back();
+            }
+        }
 
         function buildTireModalOptions() {
             const list = document.getElementById('tireOptionsList');
@@ -2022,19 +2089,29 @@
             } else { 
                 cart.push({ id: uniqueId, name: `Goma Moto (${size})`, price: baseTire.price, currency: baseTire.currency, img: baseTire.img, qty: 1 }); 
             }
-            document.getElementById('tireModal').classList.remove('open');
+            closeTireModalDirect();
             updateCartUI();
             openCart();
         }
 
         function openCart() {
-            document.getElementById('cartSidebar').classList.add('open');
-            document.getElementById('cartOverlay').classList.add('open');
+            const sidebar = document.getElementById('cartSidebar');
+            if (!sidebar.classList.contains('open')) {
+                sidebar.classList.add('open');
+                document.getElementById('cartOverlay').classList.add('open');
+                history.pushState({ modal: 'cart' }, '');
+            }
         }
 
         function toggleCart() {
-            document.getElementById('cartSidebar').classList.toggle('open');
-            document.getElementById('cartOverlay').classList.toggle('open');
+            const sidebar = document.getElementById('cartSidebar');
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                document.getElementById('cartOverlay').classList.remove('open');
+                history.back();
+            } else {
+                openCart();
+            }
         }
 
         function changeQty(id, delta) {
