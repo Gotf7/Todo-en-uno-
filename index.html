@@ -567,12 +567,37 @@
             position: relative;
             background: #f8fafc;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .micro-img-wrapper img {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .micro-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        /* INDICADOR DE ZOOM AL PASAR EL MOUSE POR LA IMAGEN */
+        .zoom-hint-icon {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background: rgba(15, 23, 42, 0.65);
+            color: #ffffff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            z-index: 5;
         }
 
         /* DISEÑO DE REEMPLAZO PREMIUM EN CASO DE ERROR DE IMAGEN */
@@ -710,8 +735,105 @@
             position: absolute;
             top: 1rem; right: 1rem;
             background: #f1f5f9; border: none; font-size: 1.1rem;
-            width: 28px; height: 28px; border-radius: 50%;
+            width: 32px; height: 32px; border-radius: 50%;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            background: #e2e8f0;
+        }
+
+        /* --- MODAL FLOTANTE DE DETALLE DE PRODUCTO --- */
+        .detail-modal-card {
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .detail-img-box {
+            width: 100%;
+            height: 250px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .detail-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-tag {
+            align-self: flex-start;
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+
+        .detail-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .detail-footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .detail-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .detail-add-btn {
+            background: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 0.88rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .detail-add-btn:hover:not(:disabled) {
+            background: var(--primary);
+        }
+
+        .detail-add-btn:disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            cursor: not-allowed;
         }
 
         .tire-option-box {
@@ -888,6 +1010,28 @@
         </div>
     </div>
 
+    <!-- MODAL DE DETALLE Y ZOOM DE PRODUCTO -->
+    <div class="modal-overlay" id="productDetailModal" onclick="closeProductDetailModal(event)">
+        <div class="modal-card detail-modal-card">
+            <button class="close-modal" onclick="closeProductDetailModalDirect()">&times;</button>
+            <div class="detail-img-box">
+                <img id="detailModalImg" src="" alt="" onerror="handleImageError(this)">
+            </div>
+            <span class="detail-tag" id="detailModalCategory">Categoría</span>
+            <h2 class="detail-title" id="detailModalTitle">Título del Producto</h2>
+            <p class="detail-desc" id="detailModalDesc">Descripción del producto...</p>
+            <div class="detail-footer-row">
+                <div>
+                    <span style="display:block; font-size:0.68rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Precio</span>
+                    <span class="detail-price" id="detailModalPrice">$0.00 USD</span>
+                </div>
+                <div id="detailModalActionContainer">
+                    <!-- Botón insertado dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- MODAL DE MEDIDAS DE GOMAS -->
     <div class="modal-overlay" id="tireModal" onclick="closeTireModal(event)">
         <div class="modal-card">
@@ -1007,15 +1151,15 @@
             },
             {
                 id:"cargador-iphone",
-            name: "Cargador Iphone Carga Rápida 20W",
-            world: "tecnologia",
-            category: "cargadores",
-            price: 9.00,
-            currency: "USD",
-            img: "static/Cargador Iphone 1Hora.jpg",
-            description: "Cargador de IPhone 20W Marca 1Hora Carga Rápida.", 
-            isTireSelector: false, 
-            available: true
+                name: "Cargador Iphone Carga Rápida 20W",
+                world: "tecnologia",
+                category: "cargadores",
+                price: 9.00,
+                currency: "USD",
+                img: "static/Cargador Iphone 1Hora.jpg",
+                description: "Cargador de IPhone 20W Marca 1Hora Carga Rápida.", 
+                isTireSelector: false, 
+                available: true
             },
             {
                 id: "cargador-samsung-45w",
@@ -1767,17 +1911,16 @@
                     actionButton = `<button class="micro-btn" onclick="addToCart('${p.id}')"><i class="fa-solid fa-plus"></i></button>`;
                 }
 
-                let imgAction = '';
-                if (p.available) {
-                    imgAction = p.isTireSelector ? `onclick="openTireModal()"` : `onclick="addToCart('${p.id}')"`;
-                }
+                // Al tocar la imagen siempre se abre el modal agrandado con detalles
+                let imgAction = `onclick="openProductDetailModal('${p.id}')"`;
                 
                 let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `${p.price.toLocaleString()} CUP`;
 
                 card.innerHTML = `
                     ${badgeHTML}
-                    <div class="micro-img-wrapper" ${imgAction} style="${p.available ? 'cursor: pointer;' : 'cursor: not-allowed;'}">
+                    <div class="micro-img-wrapper" ${imgAction}>
                         <img src="${p.img}" alt="${p.name}" onerror="handleImageError(this)">
+                        <div class="zoom-hint-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="micro-info">
                         <h3 class="micro-name">${p.name}</h3>
@@ -1794,6 +1937,44 @@
 
         function handlePageSearch() {
             filterAndRenderMicroProducts();
+        }
+
+        /* --- MODAL DE DETALLES Y AMPLIFICACIÓN DE PRODUCTO --- */
+        function openProductDetailModal(id) {
+            const p = products.find(prod => prod.id == id);
+            if (!p) return;
+
+            document.getElementById('detailModalImg').src = p.img;
+            document.getElementById('detailModalImg').alt = p.name;
+            document.getElementById('detailModalTitle').innerText = p.name;
+            document.getElementById('detailModalDesc').innerText = p.description;
+            
+            const catName = categoriesMap[p.category] || p.category;
+            document.getElementById('detailModalCategory').innerText = catName;
+
+            let displayPrice = p.currency === 'USD' ? `$${p.price.toFixed(2)} USD` : `${p.price.toLocaleString()} CUP`;
+            document.getElementById('detailModalPrice').innerText = displayPrice;
+
+            const actionContainer = document.getElementById('detailModalActionContainer');
+            if (!p.available) {
+                actionContainer.innerHTML = `<button class="detail-add-btn" disabled><i class="fa-solid fa-ban"></i> Agotado</button>`;
+            } else if (p.isTireSelector) {
+                actionContainer.innerHTML = `<button class="detail-add-btn" onclick="closeProductDetailModalDirect(); openTireModal();"><i class="fa-solid fa-expand"></i> Ver Medidas</button>`;
+            } else {
+                actionContainer.innerHTML = `<button class="detail-add-btn" onclick="addToCart('${p.id}'); closeProductDetailModalDirect();"><i class="fa-solid fa-cart-plus"></i> Añadir al Carrito</button>`;
+            }
+
+            document.getElementById('productDetailModal').classList.add('open');
+        }
+
+        function closeProductDetailModal(e) {
+            if (e.target.id === 'productDetailModal') {
+                document.getElementById('productDetailModal').classList.remove('open');
+            }
+        }
+
+        function closeProductDetailModalDirect() {
+            document.getElementById('productDetailModal').classList.remove('open');
         }
 
         function addToCart(id) {
